@@ -22,7 +22,7 @@ class AccountRestControllerTest {
     private TestRestTemplate testRestTemplate;
 
     @Test
-    @DisplayName("회원 등록")
+    @DisplayName("계정 생성")
     @Order(1)
     void testCreateProject() throws Exception{
 
@@ -43,7 +43,7 @@ class AccountRestControllerTest {
     }
 
     @Test
-    @DisplayName("회원 수정")
+    @DisplayName("게정 수정")
     @Order(2)
     void testModifyProject() throws Exception{
 
@@ -66,7 +66,7 @@ class AccountRestControllerTest {
     }
 
     @Test
-    @DisplayName("회원 삭제")
+    @DisplayName("계정 삭제")
     @Order(3)
     void testDeleteProject() throws Exception{
 

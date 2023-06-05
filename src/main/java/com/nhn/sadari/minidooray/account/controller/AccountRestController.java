@@ -22,7 +22,7 @@ public class AccountRestController {
 
     private final AccountService accountService;
 
-    //프로젝트 등록
+    //계정 생성
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = {"/", ""})
     public ResponseEntity<IdResponse> createAccount(@RequestBody @Valid AccountRegisterRequest accountRegisterRequest,
@@ -37,7 +37,7 @@ public class AccountRestController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    //프로젝트 수정
+    //계정 수정
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(value = "/{accountId}")
     public ResponseEntity<IdResponse> modifyAccount(@PathVariable("accountId") Long accountId, @RequestBody @Valid AccountModifyRequest accountModifyRequest,
@@ -47,12 +47,12 @@ public class AccountRestController {
         }
 
         Long responseId = accountService.modifyAccount(accountId, accountModifyRequest);
-        IdResponse response = new IdResponse(accountId);
+        IdResponse response = new IdResponse(responseId);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    //프로젝트 삭제
+    //계정 삭제
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(value = "/{accountId}")
     public ResponseEntity<IdResponse> deleteProject(@PathVariable("accountId") Long accountId) {

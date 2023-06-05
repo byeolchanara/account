@@ -27,6 +27,7 @@ public class AccountServiceImpl implements AccountService {
         return account;
     }
 
+    //계정 생성
     @Override
     @Transactional
     public Long createAccount(AccountRegisterRequest accountRegisterRequest) {
@@ -42,13 +43,14 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.save(account);
 
         Authority authority = new Authority();
-        authority.setAuthority(AuthorityType.관리자);
+        authority.setAuthority(AuthorityType.멤버);
 
         authorityRepository.save(authority);
 
         return account.getId();
     }
 
+    //계정 수정
     @Override
     @Transactional
     public Long modifyAccount(Long accountId, AccountModifyRequest accountModifyRequest) {
@@ -67,6 +69,7 @@ public class AccountServiceImpl implements AccountService {
         return account.getId();
     }
 
+    //계정 삭제
     @Override
     @Transactional
     public Long deleteAccount(Long accountId) {
