@@ -25,8 +25,5 @@ public class AccountRegisterRequest {
     private String name;
 
     @NotNull
-    private MemberStatusType memberStatus;
-
-    @NotNull
     private AuthorityType authority;
 }

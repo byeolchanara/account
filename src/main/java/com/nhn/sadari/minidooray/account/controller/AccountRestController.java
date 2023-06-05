@@ -58,7 +58,7 @@ public class AccountRestController {
     public ResponseEntity<IdResponse> deleteProject(@PathVariable("accountId") Long accountId) {
 
         Long responseId = accountService.deleteAccount(accountId);
-        IdResponse response = new IdResponse(accountId);
+        IdResponse response = new IdResponse(responseId);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

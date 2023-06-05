@@ -1,14 +1,14 @@
+
 ### 계정 생성 요청
 POST /api/accounts
 Host: localhost:7070
 Content-Type: application/json
 
 {
-  "loginId": "test1",
-  "password": "pw1",
-  "email": "TT1@gmail.com",
-  "name": "TT1",
-  "memberStatus": "가입",
+  "loginId": "test2",
+  "password": "pw2",
+  "email": "TT2@gmail.com",
+  "name": "TT2",
   "authority": "관리자"
 }
 
@@ -33,12 +33,16 @@ Content-Type: application/json
 }
 
 ### 계정 수정 요청
-PUT /api/accounts/{id}
+PUT /api/accounts/6
+Host: localhost:7070
+Content-Type: application/json
 
 {
-  "loginId": "",
-  "name": "",
-  "email": ""
+  "loginId": "test2",
+  "password": "pw2",
+  "email": "TT2@gmail.com",
+  "name": "TT2",
+  "memberStatus": "휴면"
 }
 
 ### 계정 수정 응답

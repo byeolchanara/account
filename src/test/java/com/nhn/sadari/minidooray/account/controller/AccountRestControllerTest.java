@@ -28,7 +28,7 @@ class AccountRestControllerTest {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-        AccountRegisterRequest accountRegisterRequest = new AccountRegisterRequest("test1", "test2", "test3", "test4", MemberStatusType.휴면, AuthorityType.멤버);
+        AccountRegisterRequest accountRegisterRequest = new AccountRegisterRequest("test1", "test2", "test3", "test4", AuthorityType.멤버);
         HttpEntity<AccountRegisterRequest> request = new HttpEntity<>(accountRegisterRequest, headers);
 
         ResponseEntity<IdResponse> result = testRestTemplate.postForEntity(
@@ -43,7 +43,7 @@ class AccountRestControllerTest {
     }
 
     @Test
-    @DisplayName("게정 수정")
+    @DisplayName("계정 수정")
     @Order(2)
     void testModifyProject() throws Exception{
 
