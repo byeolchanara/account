@@ -1,5 +1,6 @@
 package com.nhn.sadari.minidooray.account.domain;
 
+import com.nhn.sadari.minidooray.account.enumclass.AuthorityType;
 import com.nhn.sadari.minidooray.account.enumclass.MemberStatusType;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -27,5 +28,5 @@ public class AccountRegisterRequest {
     private MemberStatusType memberStatus;
 
     @NotNull
-    private Long authority;
+    private AuthorityType authority;
 }
