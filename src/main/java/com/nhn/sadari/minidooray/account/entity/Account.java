@@ -1,7 +1,13 @@
 package com.nhn.sadari.minidooray.account.entity;
 
+import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "Account")
 public class Account {
@@ -12,8 +18,13 @@ public class Account {
     @Column(name = "login_id")
     private String loginId;
 
+    @NotNull
+    private String password;
+
+    @NotNull
     private String email;
 
+    @NotNull
     private String name;
 
     @OneToOne

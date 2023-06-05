@@ -1,8 +1,14 @@
 package com.nhn.sadari.minidooray.account.entity;
 
-import javax.persistence.*;
-import java.lang.reflect.Member;
+import com.nhn.sadari.minidooray.account.enumclass.AuthorityType;
+import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "Authority")
 public class Authority {
@@ -10,5 +16,7 @@ public class Authority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String authority;
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private AuthorityType authority;
 }
