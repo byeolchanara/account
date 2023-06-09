@@ -3,13 +3,10 @@ package com.nhn.sadari.minidooray.account.service;
 import com.nhn.sadari.minidooray.account.domain.AccountModifyRequest;
 import com.nhn.sadari.minidooray.account.domain.AccountRegisterRequest;
 import com.nhn.sadari.minidooray.account.entity.Account;
-import com.nhn.sadari.minidooray.account.entity.Authority;
 import com.nhn.sadari.minidooray.account.entity.MemberStatus;
-import com.nhn.sadari.minidooray.account.enumclass.AuthorityType;
 import com.nhn.sadari.minidooray.account.enumclass.MemberStatusType;
 import com.nhn.sadari.minidooray.account.exception.AccountNotFoundException;
 import com.nhn.sadari.minidooray.account.repository.AccountRepository;
-import com.nhn.sadari.minidooray.account.repository.AuthorityRepository;
 import com.nhn.sadari.minidooray.account.repository.MemberStatusRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
-    private final AuthorityRepository authorityRepository;
     private final MemberStatusRepository memberStatusRepository;
 
     private Account getAccount(long accountId) {
@@ -41,11 +37,6 @@ public class AccountServiceImpl implements AccountService {
         account.setMemberStatus(memberStatus);
 
         accountRepository.save(account);
-
-        Authority authority = new Authority();
-        authority.setAuthority(AuthorityType.멤버);
-
-        authorityRepository.save(authority);
 
         return account.getId();
     }

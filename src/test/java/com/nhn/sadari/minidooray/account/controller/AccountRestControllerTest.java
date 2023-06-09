@@ -3,7 +3,6 @@ package com.nhn.sadari.minidooray.account.controller;
 import com.nhn.sadari.minidooray.account.domain.IdResponse;
 import com.nhn.sadari.minidooray.account.domain.AccountModifyRequest;
 import com.nhn.sadari.minidooray.account.domain.AccountRegisterRequest;
-import com.nhn.sadari.minidooray.account.enumclass.AuthorityType;
 import com.nhn.sadari.minidooray.account.enumclass.MemberStatusType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
@@ -28,7 +27,7 @@ class AccountRestControllerTest {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-        AccountRegisterRequest accountRegisterRequest = new AccountRegisterRequest("test1", "test2", "test3", "test4", AuthorityType.멤버);
+        AccountRegisterRequest accountRegisterRequest = new AccountRegisterRequest("test11", "test22", "test33", "test44");
         HttpEntity<AccountRegisterRequest> request = new HttpEntity<>(accountRegisterRequest, headers);
 
         ResponseEntity<IdResponse> result = testRestTemplate.postForEntity(
@@ -49,7 +48,7 @@ class AccountRestControllerTest {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-        AccountModifyRequest accountModifyRequest = new AccountModifyRequest("test1", "test2", "test3", "test4", MemberStatusType.휴면, AuthorityType.멤버);
+        AccountModifyRequest accountModifyRequest = new AccountModifyRequest("test1", "test2", "test3", "test4", MemberStatusType.휴면);
         HttpEntity<AccountModifyRequest> request = new HttpEntity<>(accountModifyRequest, headers);
 
         ResponseEntity<IdResponse> result = testRestTemplate.exchange(
