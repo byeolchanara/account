@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service("accountService")
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
@@ -32,6 +34,8 @@ public class AccountServiceImpl implements AccountService {
         account.setPassword(accountRegisterRequest.getPassword());
         account.setEmail(accountRegisterRequest.getEmail());
         account.setName(accountRegisterRequest.getName());
+
+        account.setCreatedAt(LocalDateTime.now());
 
         MemberStatus memberStatus = memberStatusRepository.findByStatus(MemberStatusType.가입);
         account.setMemberStatus(memberStatus);
@@ -82,7 +86,7 @@ public class AccountServiceImpl implements AccountService {
                 account.getEmail(),
                 account.getName(),
                 account.getMemberStatus().getStatus()
-                );
+        );
     }
 
 

@@ -52,7 +52,7 @@ class AccountRestControllerTest {
         HttpEntity<AccountModifyRequest> request = new HttpEntity<>(accountModifyRequest, headers);
 
         ResponseEntity<IdResponse> result = testRestTemplate.exchange(
-            "/api/accounts/{accountId}",
+            "/api/accounts/modify/{accountId}",
             HttpMethod.PUT,
             request,
             IdResponse.class,
