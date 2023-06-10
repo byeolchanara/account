@@ -63,12 +63,13 @@ public class AccountRestController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    //프로젝트 멤버 등록
+    // 프로젝트 멤버 수정 조회
+    @GetMapping(value = "/modify/{accountId}")
+    public ResponseEntity<AccountModifyRequest> getModifyRequest(@PathVariable Long accountId) {
+        AccountModifyRequest accountModifyRequest = accountService.getAccountModify(accountId);
 
+        return new ResponseEntity<>(accountModifyRequest, HttpStatus.OK);
+    }
 
-
-    //프로젝트 멤버 수정
-
-    //프로젝트 멤버 삭제
 
 }

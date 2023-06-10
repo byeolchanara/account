@@ -71,4 +71,19 @@ public class AccountServiceImpl implements AccountService {
         return account.getId();
     }
 
+    @Override
+    public AccountModifyRequest getAccountModify(Long accountId) {
+        Account account = accountRepository.findById(accountId).orElseThrow(
+                () -> new AccountNotFoundException(accountId)
+        );
+        return new AccountModifyRequest(
+                account.getLoginId(),
+                account.getPassword(),
+                account.getEmail(),
+                account.getName(),
+                account.getMemberStatus().getStatus()
+                );
+    }
+
+
 }

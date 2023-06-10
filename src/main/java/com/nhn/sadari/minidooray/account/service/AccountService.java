@@ -10,4 +10,6 @@ public interface AccountService {
     Long modifyAccount(Long accountId, AccountModifyRequest accountModifyRequest);
 
     Long deleteAccount(Long accountId);
+
+    AccountModifyRequest getAccountModify(Long accountId);
 }
