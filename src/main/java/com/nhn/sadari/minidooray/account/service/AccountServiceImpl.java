@@ -106,8 +106,10 @@ public class AccountServiceImpl implements AccountService {
         );
 
         return new LoginRequest(
+                account.getId(),
                 account.getLoginId(),
                 account.getPassword(),
+                account.getName(),
                 account.getMemberStatus().getStatus()
         );
     }

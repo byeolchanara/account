@@ -7,7 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class LoginRequest {
-    String username;
+    Long accountId;
+    String loginId;
     String password;
+    String username;
     MemberStatusType status;
 }
