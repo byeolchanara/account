@@ -55,7 +55,7 @@ public class AccountServiceImpl implements AccountService {
         account.setEmail(accountModifyRequest.getEmail());
         account.setName(accountModifyRequest.getName());
 
-        MemberStatusType memberStatusType = accountModifyRequest.getMemberStatus();
+        MemberStatusType memberStatusType = accountModifyRequest.getStatus();
         MemberStatus memberStatus = memberStatusRepository.findByStatus(memberStatusType);
         account.setMemberStatus(memberStatus);
 

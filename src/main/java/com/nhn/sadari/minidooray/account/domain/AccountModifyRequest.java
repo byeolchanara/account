@@ -23,5 +23,5 @@ public class AccountModifyRequest {
     private String name;
 
     @NotNull
-    private MemberStatusType memberStatus;
+    private MemberStatusType status;
 }

@@ -11,27 +11,27 @@ Content-Type: application/json
 
 {
   "loginId": "test2",
-  "password": "pw2",
+  "password": "pw2222222",
   "email": "TT2@gmail.com",
   "name": "TT2"
 }
 
 ### 수정할 계정 조회
-GET /api/accounts/modify/1
+GET /api/accounts/modify/6
 Host: localhost:7070
 Accept: application/json
 
 ### 계정 수정 요청
-PUT /api/accounts/modify/1
+PUT /api/accounts/modify/6
 Host: localhost:7070
 Content-Type: application/json
 
 {
   "loginId": "testUpdate",
-  "password": "pw21234",
+  "password": "pw2123433333",
   "email": "TT2@gmail.com",
   "name": "TT2",
-  "memberStatus": "휴면"
+  "status": "휴면"
 }
 
 
