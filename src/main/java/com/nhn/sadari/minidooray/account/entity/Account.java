@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Getter
@@ -25,12 +23,9 @@ public class Account {
     private String password;
 
     @NotNull
-    @Email
-    @NotBlank(message = "이메일 주소를 입력해주세요.")
     private String email;
 
     @NotNull
-    @NotBlank(message = "닉네임을 입력해주세요.")
     private String name;
 
     @Column(name = "created_at")

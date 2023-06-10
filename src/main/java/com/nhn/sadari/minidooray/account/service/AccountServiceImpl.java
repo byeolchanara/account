@@ -2,11 +2,13 @@ package com.nhn.sadari.minidooray.account.service;
 
 import com.nhn.sadari.minidooray.account.domain.AccountModifyRequest;
 import com.nhn.sadari.minidooray.account.domain.AccountRegisterRequest;
+import com.nhn.sadari.minidooray.account.domain.LoginRequest;
 import com.nhn.sadari.minidooray.account.entity.Account;
 import com.nhn.sadari.minidooray.account.entity.MemberStatus;
 import com.nhn.sadari.minidooray.account.enumclass.MemberStatusType;
 import com.nhn.sadari.minidooray.account.exception.AccountAlreadyExistException;
 import com.nhn.sadari.minidooray.account.exception.AccountNotFoundException;
+import com.nhn.sadari.minidooray.account.exception.LoginNotFoundException;
 import com.nhn.sadari.minidooray.account.repository.AccountRepository;
 import com.nhn.sadari.minidooray.account.repository.MemberStatusRepository;
 import lombok.RequiredArgsConstructor;
@@ -82,6 +84,7 @@ public class AccountServiceImpl implements AccountService {
         return account.getId();
     }
 
+    //
     @Override
     public AccountModifyRequest getAccountModify(Long accountId) {
         Account account = accountRepository.findById(accountId).orElseThrow(
@@ -92,6 +95,19 @@ public class AccountServiceImpl implements AccountService {
                 account.getPassword(),
                 account.getEmail(),
                 account.getName(),
+                account.getMemberStatus().getStatus()
+        );
+    }
+
+    @Override
+    public LoginRequest getLoginInfo(String loginId) {
+        Account account = accountRepository.getAccountByLoginId(loginId).orElseThrow(
+                () -> new LoginNotFoundException(loginId)
+        );
+
+        return new LoginRequest(
+                account.getLoginId(),
+                account.getPassword(),
                 account.getMemberStatus().getStatus()
         );
     }

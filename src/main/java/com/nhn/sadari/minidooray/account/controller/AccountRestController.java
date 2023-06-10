@@ -2,6 +2,7 @@ package com.nhn.sadari.minidooray.account.controller;
 
 import com.nhn.sadari.minidooray.account.domain.AccountModifyRequest;
 import com.nhn.sadari.minidooray.account.domain.AccountRegisterRequest;
+import com.nhn.sadari.minidooray.account.domain.LoginRequest;
 import com.nhn.sadari.minidooray.account.service.AccountService;
 import com.nhn.sadari.minidooray.account.domain.IdResponse;
 import com.nhn.sadari.minidooray.account.exception.ValidationFailedException;
@@ -55,7 +56,7 @@ public class AccountRestController {
     //계정 삭제
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(value = "/{accountId}")
-    public ResponseEntity<IdResponse> deleteProject(@PathVariable("accountId") Long accountId) {
+    public ResponseEntity<IdResponse> deleteAccount(@PathVariable("accountId") Long accountId) {
 
         Long responseId = accountService.deleteAccount(accountId);
         IdResponse response = new IdResponse(responseId);
@@ -71,5 +72,13 @@ public class AccountRestController {
         return new ResponseEntity<>(accountModifyRequest, HttpStatus.OK);
     }
 
+
+    //로그인아이디로 요청 및 응답
+    @GetMapping
+    public ResponseEntity<LoginRequest> getLoginRequest(@RequestParam String loginId) {
+        LoginRequest loginRequest = accountService.getLoginInfo(loginId);
+
+        return new ResponseEntity<>(loginRequest, HttpStatus.OK);
+    }
 
 }

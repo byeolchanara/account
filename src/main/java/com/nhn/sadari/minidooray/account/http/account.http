@@ -16,10 +16,12 @@ Content-Type: application/json
   "name": "TT2"
 }
 
+
 ### 수정할 계정 조회
 GET /api/accounts/modify/6
 Host: localhost:7070
 Accept: application/json
+
 
 ### 계정 수정 요청
 PUT /api/accounts/modify/6
@@ -40,7 +42,7 @@ DELETE /api/accounts/{id}
 Host: localhost:7070
 
 
-### 계정 조회
-
-
+### 로그인아이디로 요청 및 응답
+GET /api/accounts?loginId=test0506
+HOST: localhost:7070
 
