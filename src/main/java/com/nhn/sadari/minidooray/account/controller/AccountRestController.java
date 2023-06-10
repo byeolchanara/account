@@ -39,7 +39,7 @@ public class AccountRestController {
 
     //계정 수정
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping(value = "/{accountId}")
+    @PutMapping(value = "/modify/{accountId}")
     public ResponseEntity<IdResponse> modifyAccount(@PathVariable("accountId") Long accountId, @RequestBody @Valid AccountModifyRequest accountModifyRequest,
                                                     BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
