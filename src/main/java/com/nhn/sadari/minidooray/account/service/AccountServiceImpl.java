@@ -5,6 +5,7 @@ import com.nhn.sadari.minidooray.account.domain.AccountRegisterRequest;
 import com.nhn.sadari.minidooray.account.entity.Account;
 import com.nhn.sadari.minidooray.account.entity.MemberStatus;
 import com.nhn.sadari.minidooray.account.enumclass.MemberStatusType;
+import com.nhn.sadari.minidooray.account.exception.AccountAlreadyExistException;
 import com.nhn.sadari.minidooray.account.exception.AccountNotFoundException;
 import com.nhn.sadari.minidooray.account.repository.AccountRepository;
 import com.nhn.sadari.minidooray.account.repository.MemberStatusRepository;
@@ -29,6 +30,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @Transactional
     public Long createAccount(AccountRegisterRequest accountRegisterRequest) {
+
+        accountRepository.getAccountByLoginId(accountRegisterRequest.getLoginId()).ifPresent(account -> {
+            throw new AccountAlreadyExistException(accountRegisterRequest.getLoginId());
+        });
+
         Account account = new Account();
         account.setLoginId(accountRegisterRequest.getLoginId());
         account.setPassword(accountRegisterRequest.getPassword());
@@ -50,6 +56,7 @@ public class AccountServiceImpl implements AccountService {
     @Transactional
     public Long modifyAccount(Long accountId, AccountModifyRequest accountModifyRequest) {
         Account account = getAccount(accountId);
+
         account.setLoginId(accountModifyRequest.getLoginId());
         account.setPassword(accountModifyRequest.getPassword());
         account.setEmail(accountModifyRequest.getEmail());

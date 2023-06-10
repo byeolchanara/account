@@ -1,7 +1,6 @@
 package com.nhn.sadari.minidooray.account.domain;
 
 
-import com.nhn.sadari.minidooray.account.enumclass.MemberStatusType;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
