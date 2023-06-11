@@ -73,5 +73,12 @@ public class AccountRestController {
     }
 
 
+    //로그인아이디로 요청 및 응답
+    @GetMapping
+    public ResponseEntity<LoginRequest> getLoginRequest(@RequestParam String loginId) {
+        LoginRequest loginRequest = accountService.getLoginInfo(loginId);
+
+        return new ResponseEntity<>(loginRequest, HttpStatus.OK);
+    }
 
 }

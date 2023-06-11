@@ -16,7 +16,6 @@ Content-Type: application/json
   "name": "TT2"
 }
 
-
 ### 로그인
 GET /api/login?loginId=test
 HOST: localhost:7070
@@ -57,4 +56,3 @@ Content-Type: application/json
 ### 계정 삭제 요청
 DELETE /api/accounts/{id}
 Host: localhost:7070
-
