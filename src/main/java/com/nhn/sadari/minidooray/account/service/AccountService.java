@@ -1,5 +1,6 @@
 package com.nhn.sadari.minidooray.account.service;
 
+import com.nhn.sadari.minidooray.account.domain.AccountInfo;
 import com.nhn.sadari.minidooray.account.domain.AccountModifyRequest;
 import com.nhn.sadari.minidooray.account.domain.AccountRegisterRequest;
 import com.nhn.sadari.minidooray.account.domain.LoginRequest;
@@ -15,4 +16,6 @@ public interface AccountService {
     AccountModifyRequest getAccountModify(Long accountId);
 
     LoginRequest getLoginInfo(String loginId);
+
+    AccountInfo getAccountInfo(String loginId);
 }

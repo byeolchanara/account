@@ -1,5 +1,6 @@
 package com.nhn.sadari.minidooray.account.service;
 
+import com.nhn.sadari.minidooray.account.domain.AccountInfo;
 import com.nhn.sadari.minidooray.account.domain.AccountModifyRequest;
 import com.nhn.sadari.minidooray.account.domain.AccountRegisterRequest;
 import com.nhn.sadari.minidooray.account.domain.LoginRequest;
@@ -106,9 +107,20 @@ public class AccountServiceImpl implements AccountService {
         );
 
         return new LoginRequest(
+                account.getLoginId(),
+                account.getPassword()
+        );
+    }
+
+    @Override
+    public AccountInfo getAccountInfo(String loginId) {
+        Account account = accountRepository.getAccountByLoginId(loginId).orElseThrow(
+                () -> new LoginNotFoundException(loginId)
+        );
+
+        return new AccountInfo(
                 account.getId(),
                 account.getLoginId(),
-                account.getPassword(),
                 account.getName(),
                 account.getMemberStatus().getStatus()
         );

@@ -17,6 +17,23 @@ Content-Type: application/json
 }
 
 
+### 로그인
+GET /api/login?loginId=test
+HOST: localhost:7070
+Content-Type: application/json
+
+{
+  "loginId": "test2",
+  "password": "pw2222222"
+}
+
+
+### 로그인후 요청
+GET /api/auth/test
+HOST: localhost:7070
+Content-Type: application/json
+
+
 ### 수정할 계정 조회
 GET /api/accounts/modify/6
 Host: localhost:7070
@@ -40,9 +57,4 @@ Content-Type: application/json
 ### 계정 삭제 요청
 DELETE /api/accounts/{id}
 Host: localhost:7070
-
-
-### 로그인아이디로 요청 및 응답
-GET /api/accounts?loginId=test0506
-HOST: localhost:7070
 
