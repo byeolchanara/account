@@ -2,13 +2,10 @@ package com.nhn.sadari.minidooray.account.controller;
 
 
 import com.nhn.sadari.minidooray.account.domain.AccountInfo;
-import com.nhn.sadari.minidooray.account.domain.AccountModifyRequest;
 import com.nhn.sadari.minidooray.account.domain.CommonResponse;
 import com.nhn.sadari.minidooray.account.domain.LoginRequest;
 import com.nhn.sadari.minidooray.account.service.AccountService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;

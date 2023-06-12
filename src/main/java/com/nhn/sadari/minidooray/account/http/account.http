@@ -1,9 +1,3 @@
-### 아이디 비밀번호 요청
-GET /api/accounts/{id}
-Host: localhost:7070
-Content-Type: application/json
-
-
 ### 계정 생성 요청
 POST /api/accounts
 Host: localhost:7070
@@ -33,10 +27,10 @@ HOST: localhost:7070
 Content-Type: application/json
 
 
-### 수정할 계정 조회
-GET /api/accounts/modify/6
+### 계정 조회
+GET /api/accounts/1
 Host: localhost:7070
-Accept: application/json
+Content-Type: application/json
 
 
 ### 계정 수정 요청

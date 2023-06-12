@@ -1,12 +1,11 @@
 package com.nhn.sadari.minidooray.account.controller;
 
 import com.nhn.sadari.minidooray.account.domain.*;
-import com.nhn.sadari.minidooray.account.service.AccountService;
 import com.nhn.sadari.minidooray.account.exception.ValidationFailedException;
+import com.nhn.sadari.minidooray.account.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -86,15 +85,15 @@ public class AccountRestController {
                 .build();
     }
 
-    // 프로젝트 멤버 수정 조회
-    @GetMapping(value = "/modify/{accountId}")
+    // 계정 조회
+    @GetMapping(value = "/{accountId}")
     public CommonResponse<AccountModifyRequest> getModifyRequest(@PathVariable Long accountId) {
         AccountModifyRequest accountModifyRequest = accountService.getAccountModify(accountId);
 
         CommonResponse.Header header = CommonResponse.Header.builder()
                 .isSuccessful(true)
                 .resultCode(200)
-                .resultMessage("계정 수정 조회 성공")
+                .resultMessage("계정 조회 성공")
                 .build();
 
         return CommonResponse.<AccountModifyRequest>builder()

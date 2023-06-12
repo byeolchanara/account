@@ -1,10 +1,12 @@
 package com.nhn.sadari.minidooray.account.advice;
 
 import com.nhn.sadari.minidooray.account.domain.CommonResponse;
-import com.nhn.sadari.minidooray.account.exception.*;
+import com.nhn.sadari.minidooray.account.exception.AccountNotFoundException;
+import com.nhn.sadari.minidooray.account.exception.LoginNotFoundException;
+import com.nhn.sadari.minidooray.account.exception.MemberStatusNotFoundException;
+import com.nhn.sadari.minidooray.account.exception.ValidationFailedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
