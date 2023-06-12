@@ -1,6 +1,7 @@
 package com.nhn.sadari.minidooray.account.controller;
 
 import com.nhn.sadari.minidooray.account.domain.*;
+import com.nhn.sadari.minidooray.account.entity.Account;
 import com.nhn.sadari.minidooray.account.exception.ValidationFailedException;
 import com.nhn.sadari.minidooray.account.service.AccountService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -117,6 +119,25 @@ public class AccountRestController {
         return CommonResponse.<LoginRequest>builder()
                 .header(header)
                 .result(Collections.singletonList(loginRequest))
+                .build();
+    }
+
+
+    //등록된 모든 계정 조회
+    @GetMapping(value = "/group")
+    public CommonResponse<AccountGroup> getAccountGroups() {
+
+        List<AccountGroup> accountGroups = accountService.getAccountGroups();
+
+        CommonResponse.Header header = CommonResponse.Header.builder()
+                .isSuccessful(true)
+                .resultCode(200)
+                .resultMessage("등록된 모든 계정 조회")
+                .build();
+
+        return CommonResponse.<AccountGroup>builder()
+                .header(header)
+                .result(accountGroups)
                 .build();
     }
 

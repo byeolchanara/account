@@ -1,9 +1,6 @@
 package com.nhn.sadari.minidooray.account.service;
 
-import com.nhn.sadari.minidooray.account.domain.AccountInfo;
-import com.nhn.sadari.minidooray.account.domain.AccountModifyRequest;
-import com.nhn.sadari.minidooray.account.domain.AccountRegisterRequest;
-import com.nhn.sadari.minidooray.account.domain.LoginRequest;
+import com.nhn.sadari.minidooray.account.domain.*;
 import com.nhn.sadari.minidooray.account.entity.Account;
 import com.nhn.sadari.minidooray.account.entity.MemberStatus;
 import com.nhn.sadari.minidooray.account.enumclass.MemberStatusType;
@@ -17,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service("accountService")
 @RequiredArgsConstructor
@@ -124,6 +122,13 @@ public class AccountServiceImpl implements AccountService {
                 account.getName(),
                 account.getMemberStatus().getStatus()
         );
+    }
+
+    @Override
+    public List<AccountGroup> getAccountGroups() {
+        List<AccountGroup> accountGroups = accountRepository.findAllBy();
+
+        return accountGroups;
     }
 
 

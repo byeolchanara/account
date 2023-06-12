@@ -50,3 +50,8 @@ Content-Type: application/json
 ### 계정 삭제 요청
 DELETE /api/accounts/{id}
 Host: localhost:7070
+
+
+### 모든 계정 조회
+GET /api/accounts/group
+Host: localhost:7070
