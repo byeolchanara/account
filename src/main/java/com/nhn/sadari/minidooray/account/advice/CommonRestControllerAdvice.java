@@ -1,8 +1,6 @@
 package com.nhn.sadari.minidooray.account.advice;
 
-import com.nhn.sadari.minidooray.account.exception.ErrorMessage;
-import com.nhn.sadari.minidooray.account.exception.MemberStatusNotFoundException;
-import com.nhn.sadari.minidooray.account.exception.ValidationFailedException;
+import com.nhn.sadari.minidooray.account.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +33,7 @@ public class CommonRestControllerAdvice {
     }
 
     //404 Not Found
-    @ExceptionHandler({NoHandlerFoundException.class, MemberStatusNotFoundException.class}) //MemberStatusNotFoundException
+    @ExceptionHandler({NoHandlerFoundException.class, MemberStatusNotFoundException.class, AccountNotFoundException.class, LoginNotFoundException.class})
     public ResponseEntity<ErrorMessage> eventNotFoundException(Exception exception) {
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND.value(), exception.getMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
