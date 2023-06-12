@@ -1,10 +1,7 @@
 package com.nhn.sadari.minidooray.account.controller;
 
-import com.nhn.sadari.minidooray.account.domain.AccountModifyRequest;
-import com.nhn.sadari.minidooray.account.domain.AccountRegisterRequest;
-import com.nhn.sadari.minidooray.account.domain.LoginRequest;
+import com.nhn.sadari.minidooray.account.domain.*;
 import com.nhn.sadari.minidooray.account.service.AccountService;
-import com.nhn.sadari.minidooray.account.domain.IdResponse;
 import com.nhn.sadari.minidooray.account.exception.ValidationFailedException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collections;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,59 +24,101 @@ public class AccountRestController {
     //계정 생성
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = {"/", ""})
-    public ResponseEntity<IdResponse> createAccount(@RequestBody @Valid AccountRegisterRequest accountRegisterRequest,
+    public CommonResponse<IdResponse> createAccount(@RequestBody @Valid AccountRegisterRequest accountRegisterRequest,
                                                     BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             throw new ValidationFailedException(bindingResult);
         }
 
         Long responseId = accountService.createAccount(accountRegisterRequest);
-        IdResponse response = new IdResponse(responseId);
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        CommonResponse.Header header = CommonResponse.Header.builder()
+                .isSuccessful(true)
+                .resultCode(201)
+                .resultMessage("계정 등록 성공")
+                .build();
+
+        return CommonResponse.<IdResponse>builder()
+                .header(header)
+                .result(Collections.singletonList(new IdResponse(responseId)))
+                .build();
     }
 
     //계정 수정
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(value = "/modify/{accountId}")
-    public ResponseEntity<IdResponse> modifyAccount(@PathVariable("accountId") Long accountId, @RequestBody @Valid AccountModifyRequest accountModifyRequest,
+    public CommonResponse<IdResponse> modifyAccount(@PathVariable("accountId") Long accountId, @RequestBody @Valid AccountModifyRequest accountModifyRequest,
                                                     BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             throw new ValidationFailedException(bindingResult);
         }
 
         Long responseId = accountService.modifyAccount(accountId, accountModifyRequest);
-        IdResponse response = new IdResponse(responseId);
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        CommonResponse.Header header = CommonResponse.Header.builder()
+                .isSuccessful(true)
+                .resultCode(200)
+                .resultMessage("계정 수정 성공")
+                .build();
+
+        return CommonResponse.<IdResponse>builder()
+                .header(header)
+                .result(Collections.singletonList(new IdResponse(responseId)))
+                .build();
     }
 
     //계정 삭제
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(value = "/{accountId}")
-    public ResponseEntity<IdResponse> deleteAccount(@PathVariable("accountId") Long accountId) {
+    public CommonResponse<IdResponse> deleteAccount(@PathVariable("accountId") Long accountId) {
 
         Long responseId = accountService.deleteAccount(accountId);
-        IdResponse response = new IdResponse(responseId);
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        CommonResponse.Header header = CommonResponse.Header.builder()
+                .isSuccessful(true)
+                .resultCode(200)
+                .resultMessage("계정 삭제 성공")
+                .build();
+
+        return CommonResponse.<IdResponse>builder()
+                .header(header)
+                .result(Collections.singletonList(new IdResponse(responseId)))
+                .build();
     }
 
     // 프로젝트 멤버 수정 조회
     @GetMapping(value = "/modify/{accountId}")
-    public ResponseEntity<AccountModifyRequest> getModifyRequest(@PathVariable Long accountId) {
+    public CommonResponse<AccountModifyRequest> getModifyRequest(@PathVariable Long accountId) {
         AccountModifyRequest accountModifyRequest = accountService.getAccountModify(accountId);
 
-        return new ResponseEntity<>(accountModifyRequest, HttpStatus.OK);
+        CommonResponse.Header header = CommonResponse.Header.builder()
+                .isSuccessful(true)
+                .resultCode(200)
+                .resultMessage("계정 수정 조회 성공")
+                .build();
+
+        return CommonResponse.<AccountModifyRequest>builder()
+                .header(header)
+                .result(Collections.singletonList(accountModifyRequest))
+                .build();
     }
 
 
     //로그인아이디로 요청 및 응답
     @GetMapping
-    public ResponseEntity<LoginRequest> getLoginRequest(@RequestParam String loginId) {
+    public CommonResponse<LoginRequest> getLoginRequest(@RequestParam String loginId) {
         LoginRequest loginRequest = accountService.getLoginInfo(loginId);
 
-        return new ResponseEntity<>(loginRequest, HttpStatus.OK);
+        CommonResponse.Header header = CommonResponse.Header.builder()
+                .isSuccessful(true)
+                .resultCode(200)
+                .resultMessage("로그인을 위한 아이디 비밀번호 조회 성공")
+                .build();
+
+        return CommonResponse.<LoginRequest>builder()
+                .header(header)
+                .result(Collections.singletonList(loginRequest))
+                .build();
     }
 
 }

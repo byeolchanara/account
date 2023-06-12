@@ -1,5 +1,6 @@
 package com.nhn.sadari.minidooray.account.advice;
 
+import com.nhn.sadari.minidooray.account.domain.CommonResponse;
 import com.nhn.sadari.minidooray.account.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -27,33 +28,68 @@ public class CommonRestControllerAdvice {
     //400 Bad Request
     @ExceptionHandler({MissingServletRequestParameterException.class, MethodArgumentNotValidException.class,
         ValidationFailedException.class})
-    public ResponseEntity<ErrorMessage> missingParameter(Exception exception) {
-        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), exception.getMessage());
-        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    public CommonResponse<Void> missingParameter(Exception exception) {
+
+        CommonResponse.Header header = CommonResponse.Header.builder()
+                .isSuccessful(false)
+                .resultCode(HttpStatus.BAD_REQUEST.value())
+                .resultMessage(exception.getMessage())
+                .build();
+
+        return CommonResponse.<Void>builder()
+                .header(header)
+                .result(null)
+                .build();
     }
 
     //404 Not Found
     @ExceptionHandler({NoHandlerFoundException.class, MemberStatusNotFoundException.class, AccountNotFoundException.class, LoginNotFoundException.class})
-    public ResponseEntity<ErrorMessage> eventNotFoundException(Exception exception) {
-        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND.value(), exception.getMessage());
-        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+    public CommonResponse<Void> eventNotFoundException(Exception exception) {
+
+        CommonResponse.Header header = CommonResponse.Header.builder()
+                .isSuccessful(false)
+                .resultCode(HttpStatus.NOT_FOUND.value())
+                .resultMessage(exception.getMessage())
+                .build();
+
+        return CommonResponse.<Void>builder()
+                .header(header)
+                .result(null)
+                .build();
     }
 
     //405 Method Not Allowed
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
-    public ResponseEntity<ErrorMessage> methodNotAllowed(Exception exception, HttpServletRequest request) {
-        ErrorMessage errorMessage =
-            new ErrorMessage(HttpStatus.METHOD_NOT_ALLOWED.value(), exception.getMessage(), request.getRequestURI());
-        return new ResponseEntity<>(errorMessage, HttpStatus.METHOD_NOT_ALLOWED);
+    public CommonResponse<Void> methodNotAllowed(Exception exception, HttpServletRequest request) {
+
+        CommonResponse.Header header = CommonResponse.Header.builder()
+                .isSuccessful(false)
+                .resultCode(HttpStatus.METHOD_NOT_ALLOWED.value())
+                .resultMessage(exception.getMessage())
+                .build();
+
+        return CommonResponse.<Void>builder()
+                .header(header)
+                .result(null)
+                .build();
     }
 
 
     //500 Internal Server Error
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorMessage> internalServerError(Exception exception) {
+    public CommonResponse<Void> internalServerError(Exception exception) {
         log.info("error : {}", exception);
-        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
-        return new ResponseEntity<>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        CommonResponse.Header header = CommonResponse.Header.builder()
+                .isSuccessful(false)
+                .resultCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .resultMessage(exception.getMessage())
+                .build();
+
+        return CommonResponse.<Void>builder()
+                .header(header)
+                .result(null)
+                .build();
     }
 
 }
