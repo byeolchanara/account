@@ -1,7 +1,6 @@
 package com.nhn.sadari.minidooray.account.controller;
 
 import com.nhn.sadari.minidooray.account.domain.*;
-import com.nhn.sadari.minidooray.account.entity.Account;
 import com.nhn.sadari.minidooray.account.exception.ValidationFailedException;
 import com.nhn.sadari.minidooray.account.service.AccountService;
 import lombok.RequiredArgsConstructor;

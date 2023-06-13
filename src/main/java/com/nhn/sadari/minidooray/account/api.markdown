@@ -51,6 +51,16 @@
 ### 계정 삭제 요청
 
 ---
+# GET /api/accounts/group
+### 모든 계정 조회
+---
+***
+
+
+
+
+
+---
 ***
 # POST /api/projects
 ### 프로젝트 등록
@@ -116,6 +126,10 @@
 ---
 # GET /api/projects/{projectId}
 ### 프로젝트 아이디로 프로젝트 조회
+
+---
+# GET /api/projects/{projectId}/members
+### 프로젝트 아이디로 프로젝트 멤버 조회
 
 ---
 ***
