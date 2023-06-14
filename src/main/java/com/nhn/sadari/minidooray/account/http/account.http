@@ -34,7 +34,7 @@ Content-Type: application/json
 
 
 ### 계정 수정 요청
-PUT /api/accounts/6
+PUT /api/accounts/8
 Host: localhost:7070
 Content-Type: application/json
 
@@ -48,7 +48,7 @@ Content-Type: application/json
 
 
 ### 계정 삭제 요청
-DELETE /api/accounts/{id}
+DELETE /api/accounts/7
 Host: localhost:7070
 
 
