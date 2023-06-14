@@ -34,7 +34,7 @@ Content-Type: application/json
 
 
 ### 계정 수정 요청
-PUT /api/accounts/modify/6
+PUT /api/accounts/6
 Host: localhost:7070
 Content-Type: application/json
 

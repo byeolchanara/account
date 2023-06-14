@@ -4,24 +4,26 @@ import com.nhn.sadari.minidooray.account.enumclass.MemberStatusType;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+import javax.validation.constraints.NotBlank;
+
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountModifyRequest {
-    @NotNull
+    @NotBlank
     private String loginId;
 
-    @NotNull
+    @NotBlank
     private String password;
 
-    @NotNull
+    @NotBlank
     private String email;
 
-    @NotNull
+    @NotBlank
     private String name;
 
-    @NotNull
     private MemberStatusType status;
 }

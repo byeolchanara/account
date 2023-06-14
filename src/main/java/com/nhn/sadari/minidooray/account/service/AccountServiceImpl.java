@@ -36,16 +36,17 @@ public class AccountServiceImpl implements AccountService {
             throw new AccountAlreadyExistException(accountRegisterRequest.getLoginId());
         });
 
-        Account account = new Account();
-        account.setLoginId(accountRegisterRequest.getLoginId());
-        account.setPassword(accountRegisterRequest.getPassword());
-        account.setEmail(accountRegisterRequest.getEmail());
-        account.setName(accountRegisterRequest.getName());
-
-        account.setCreatedAt(LocalDateTime.now());
-
         MemberStatus memberStatus = memberStatusRepository.findByStatus(MemberStatusType.가입);
-        account.setMemberStatus(memberStatus);
+
+        Account account = Account.builder()
+                .name(accountRegisterRequest.getName())
+                .loginId(accountRegisterRequest.getLoginId())
+                .password(accountRegisterRequest.getPassword())
+                .email(accountRegisterRequest.getEmail())
+                .memberStatus(memberStatus)
+                .createdAt(LocalDateTime.now())
+                .build();
+
 
         accountRepository.save(account);
 
@@ -58,14 +59,12 @@ public class AccountServiceImpl implements AccountService {
     public Long modifyAccount(Long accountId, AccountModifyRequest accountModifyRequest) {
         Account account = getAccount(accountId);
 
-        account.setLoginId(accountModifyRequest.getLoginId());
-        account.setPassword(accountModifyRequest.getPassword());
-        account.setEmail(accountModifyRequest.getEmail());
-        account.setName(accountModifyRequest.getName());
-
         MemberStatusType memberStatusType = accountModifyRequest.getStatus();
         MemberStatus memberStatus = memberStatusRepository.findByStatus(memberStatusType);
-        account.setMemberStatus(memberStatus);
+
+        account.modify(accountModifyRequest.getLoginId(), accountModifyRequest.getPassword(), accountModifyRequest.getEmail(),
+                accountModifyRequest.getName(), LocalDateTime.now(), memberStatus);
+
 
         accountRepository.save(account);
 

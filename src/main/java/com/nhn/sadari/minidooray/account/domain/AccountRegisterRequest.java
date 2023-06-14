@@ -4,23 +4,26 @@ package com.nhn.sadari.minidooray.account.domain;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 
-@Data
+
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountRegisterRequest {
-    @NotNull
+    @NotBlank
     private String loginId;
 
-    @NotNull
+    @NotBlank
     private String password;
 
-    @NotNull
+    @NotBlank
     private String email;
 
-    @NotNull
+    @NotBlank
     private String name;
 
 }
