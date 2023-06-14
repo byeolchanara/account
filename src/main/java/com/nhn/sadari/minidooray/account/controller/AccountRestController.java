@@ -123,7 +123,7 @@ public class AccountRestController {
 
 
     //등록된 모든 계정 조회
-    @GetMapping(value = "/group")
+    @GetMapping(value = "/")
     public CommonResponse<AccountGroup> getAccountGroups() {
 
         List<AccountGroup> accountGroups = accountService.getAccountGroups();

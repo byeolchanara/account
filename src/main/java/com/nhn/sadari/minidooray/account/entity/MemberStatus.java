@@ -1,14 +1,15 @@
 package com.nhn.sadari.minidooray.account.entity;
 
 import com.nhn.sadari.minidooray.account.enumclass.MemberStatusType;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "member_status")
 public class MemberStatus {

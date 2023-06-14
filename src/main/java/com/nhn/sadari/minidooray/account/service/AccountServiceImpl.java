@@ -48,7 +48,7 @@ public class AccountServiceImpl implements AccountService {
                 .build();
 
 
-        accountRepository.save(account);
+        account = accountRepository.save(account);
 
         return account.getId();
     }
@@ -66,7 +66,7 @@ public class AccountServiceImpl implements AccountService {
                 accountModifyRequest.getName(), LocalDateTime.now(), memberStatus);
 
 
-        accountRepository.save(account);
+        account = accountRepository.save(account);
 
         return account.getId();
     }

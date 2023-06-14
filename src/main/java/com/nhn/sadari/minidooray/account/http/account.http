@@ -40,9 +40,9 @@ Content-Type: application/json
 
 {
   "loginId": "testUpdate",
-  "password": "pw2123433333",
-  "email": "TT2@gmail.com",
-  "name": "TT2",
+  "password": "pw",
+  "email": "TT8@gmail.com",
+  "name": "TT8",
   "status": "휴면"
 }
 
@@ -53,5 +53,5 @@ Host: localhost:7070
 
 
 ### 모든 계정 조회
-GET /api/accounts/group
+GET /api/accounts/
 Host: localhost:7070
