@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("accountService")
@@ -82,7 +83,7 @@ public class AccountServiceImpl implements AccountService {
         return account.getId();
     }
 
-    //
+    //계정 조회
     @Override
     public AccountModifyRequest getAccountModify(Long accountId) {
         Account account = accountRepository.findById(accountId).orElseThrow(
@@ -97,6 +98,7 @@ public class AccountServiceImpl implements AccountService {
         );
     }
 
+    //로그인
     @Override
     public LoginRequest getLoginInfo(String loginId) {
         Account account = accountRepository.getAccountByLoginId(loginId).orElseThrow(
@@ -109,6 +111,7 @@ public class AccountServiceImpl implements AccountService {
         );
     }
 
+    //로그인
     @Override
     public AccountInfo getAccountInfo(String loginId) {
         Account account = accountRepository.getAccountByLoginId(loginId).orElseThrow(
@@ -123,9 +126,22 @@ public class AccountServiceImpl implements AccountService {
         );
     }
 
+
+    //등록된 모든 계정 조회
     @Override
     public List<AccountGroup> getAccountGroups() {
-        List<AccountGroup> accountGroups = accountRepository.findAllBy();
+
+        List<Account> accounts = accountRepository.findAllBy();
+        List<AccountGroup> accountGroups = new ArrayList<>();
+
+        for(Account account : accounts){
+            AccountGroup accountGroup = AccountGroup.builder().id(account.getId())
+                    .name(account.getName())
+                    .email(account.getEmail())
+                    .build();
+
+            accountGroups.add(accountGroup);
+        }
 
         return accountGroups;
     }

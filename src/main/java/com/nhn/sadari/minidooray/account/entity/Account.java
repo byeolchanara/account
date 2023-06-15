@@ -48,7 +48,6 @@ public class Account {
         this.memberStatus = memberStatus;
     }
 
-
     public void modify(String loginId, String password, String email, String name, LocalDateTime createdAt, MemberStatus memberStatus) {
         this.loginId = loginId;
         this.password = password;

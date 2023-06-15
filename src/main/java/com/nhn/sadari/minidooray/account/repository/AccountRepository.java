@@ -11,5 +11,5 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     Optional<Account> getAccountByLoginId(String loginId);
 
-    List<AccountGroup> findAllBy();
+    List<Account> findAllBy();
 }
