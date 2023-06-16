@@ -28,11 +28,11 @@
 ### 로그인후 요청
 
 ---
-# GET /api/accounts/modify/{accountId}
+# GET /api/accounts/{accountId}
 ### 수정할 계정 조회
 
 ---
-# PUT /api/accounts/modify/{accountId}
+# PUT /api/accounts/{accountId}
 ### 계정 수정 요청
 ## Response
 #### body
@@ -51,7 +51,7 @@
 ### 계정 삭제 요청
 
 ---
-# GET /api/accounts/group
+# GET /api/accounts/
 ### 모든 계정 조회
 ---
 ***
